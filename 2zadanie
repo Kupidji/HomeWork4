@@ -1,0 +1,30 @@
+// 2. Сгенерировать список из N элементов. Список должен содержать числа от 0 до 100.
+// Удалить из списка все числа, заканчивающиеся на 3. Обязательно использовать предикаты.
+
+#include <list>
+#include <iostream>
+
+using namespace std;
+
+void printList(list<int> myList) {
+	for (auto v : myList)
+		cout << v << " ";
+}
+
+void main() {
+	setlocale(LC_ALL, "rus");
+	list<int> listOfNum;
+
+	// Заполняю list
+	for (int i = 1; i <= 100; i++) {
+		listOfNum.push_back(i);
+	}
+	printList(listOfNum);
+
+	listOfNum.erase(remove_if(listOfNum.begin(), listOfNum.end(), [](const int& x) {
+		return x % 10 == 3;
+		}), listOfNum.end());
+		
+	cout << "\n----------------------------------\n";
+	printList(listOfNum);
+}
