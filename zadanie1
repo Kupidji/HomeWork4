@@ -1,0 +1,45 @@
+// 1. Создать два списка (контейнер list). Вывести их на экран. Вставить из второго списка
+// в первый элементы, находящиеся между элементами с номерами k1 и k2. Вывести первый список
+// на экран. Использовать splice.
+
+#include <list>
+#include <iostream>
+#include<algorithm>
+
+using namespace std;
+
+void printList(list<int> myList) {
+	for (auto v : myList)
+		cout << v << " ";
+}
+
+void main() {
+	
+	list<int> listOfNum1{ 1, 5, 6, 7 };
+	list<int> listOfNum2{ 2, 3, 4, 8 };
+	list<int>listOfNum3;
+	int arr[100];
+	int k1, k2;
+
+	setlocale(LC_ALL, "rus");
+
+	cout << "Введите k1 "; cin >> k1;
+	cout << "Введите k2 "; cin >> k2;
+	int k = 0;
+	for (auto v : listOfNum2) {
+		arr[k] = v;
+		k++;
+	}
+
+	for (int i = k1; i < k2; i++) {
+		listOfNum3.push_back(arr[i]);
+	}
+
+	printList(listOfNum1);
+	cout << endl;
+	printList(listOfNum2);
+	cout << endl;
+	listOfNum1.splice(listOfNum1.end(), listOfNum3);
+	cout << endl;
+	printList(listOfNum1);
+}
